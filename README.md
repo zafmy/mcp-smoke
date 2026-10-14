@@ -1,3 +1,5 @@
+![MCP Smoke banner](assets/mcp-smoke-banner.png)
+
 # mcp-smoke
 
 [![CI](https://github.com/zafmy/mcp-smoke/actions/workflows/ci.yml/badge.svg)](https://github.com/zafmy/mcp-smoke/actions/workflows/ci.yml)
