@@ -1,0 +1,9 @@
+{
+  "cases": [
+    { "tool": "get_signature", "args": { "name": "CopyBuffer" }, "expect": "int CopyBuffer(int indicator_handle" },
+    { "tool": "get_signature", "args": { "name": "OrderSend (request, result)" }, "expect": "OrderSend (Trade Functions)" },
+    { "tool": "search_reference", "args": { "query": "copy buffer" }, "expect": "CopyBuffer" },
+    { "tool": "explain_code", "args": { "code": 10016 }, "expect": "TRADE_RETCODE_INVALID_STOPS" },
+    { "tool": "search_reference", "args": { "query": "" }, "expectError": true }
+  ]
+}

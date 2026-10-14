@@ -1,0 +1,41 @@
+{
+  "name": "mcp-smoke",
+  "version": "0.1.0",
+  "description": "One command to smoke-test any stdio MCP server in CI: boot it, check its tool schemas, run example calls",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "mcp-smoke": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node --test dist/*.test.js",
+    "prepare": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zafmy/mcp-smoke.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "smoke-test",
+    "ci",
+    "ai-agents",
+    "claude-code"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}
