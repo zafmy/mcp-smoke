@@ -1,5 +1,7 @@
 # mcp-smoke
 
+[![CI](https://github.com/zafmy/mcp-smoke/actions/workflows/ci.yml/badge.svg)](https://github.com/zafmy/mcp-smoke/actions/workflows/ci.yml)
+
 One command to smoke-test any stdio MCP server, built for CI. It boots your server the way an agent would, lists the tools, checks every input schema, runs a few example calls, and exits non-zero if anything is off.
 
 It runs locally, makes no network calls of its own, and needs no API key or model.
@@ -14,7 +16,8 @@ mql5-docs-mcp 0.1.0, 3 tool(s)
 ✔ schema explain_code
 ✔ call get_signature #1
 ✔ call explain_code #2
-7 passed, 0 failed
+✔ call search_reference #3
+8 passed, 0 failed
 ```
 
 ## Use
@@ -23,7 +26,7 @@ mql5-docs-mcp 0.1.0, 3 tool(s)
 npx -y github:zafmy/mcp-smoke -- <command that starts your server> [args...]
 ```
 
-Install it with the `github:` prefix as shown. The `mcp-smoke` name on the npm registry belongs to a different project.
+Install it with the `github:` prefix as shown. The `mcp-smoke` name on the npm registry belongs to a different project. In CI, pin a full commit SHA (`github:zafmy/mcp-smoke#<sha>`) so a change on main cannot change your build.
 
 | Option | What it does |
 |---|---|
@@ -65,14 +68,12 @@ A call with neither `expect` nor `expectError` passes if the tool returns withou
 
 A full example lives in [examples/mql5-docs-mcp.json](examples/mql5-docs-mcp.json).
 
-The server is started with the same environment variables as `mcp-smoke` itself, so secrets set on the CI step reach it.
+The server is started with the same environment variables as `mcp-smoke` itself, so secrets set on the CI step reach it. Everything mcp-smoke installs from npm runs in that step too, so give secrets only to that step and keep the job at `permissions: contents: read`.
 
 ## In GitHub Actions
 
 ```yaml
-- uses: actions/setup-node@v4
-  with: { node-version: 22 }
-- run: npm ci && npm run build
+# after your own checkout, setup-node and build steps
 - run: npx -y github:zafmy/mcp-smoke -- node dist/index.js
 ```
 
