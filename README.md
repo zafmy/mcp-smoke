@@ -26,7 +26,7 @@ mql5-docs-mcp 0.1.0, 3 tool(s)
 npx -y github:zafmy/mcp-smoke -- <command that starts your server> [args...]
 ```
 
-Install it with the `github:` prefix as shown. The `mcp-smoke` name on the npm registry belongs to a different project. In CI, pin a full commit SHA (`github:zafmy/mcp-smoke#<sha>`) so a change on main cannot change your build.
+Install it with the `github:` prefix as shown. The `mcp-smoke` name on the npm registry belongs to a different project. In CI, pin a release tag such as `github:zafmy/mcp-smoke#v0.1.0` (release tags are protected from being moved or deleted) or a full commit SHA, so a change on main cannot change your build.
 
 | Option | What it does |
 |---|---|
@@ -74,7 +74,7 @@ The server is started with the same environment variables as `mcp-smoke` itself,
 
 ```yaml
 # after your own checkout, setup-node and build steps
-- run: npx -y github:zafmy/mcp-smoke -- node dist/index.js
+- run: npx -y github:zafmy/mcp-smoke#v0.1.0 -- node dist/index.js
 ```
 
 ## Scope
