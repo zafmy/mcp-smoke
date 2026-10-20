@@ -10,7 +10,7 @@ const Config = z.strictObject({
   cases: z.array(z.strictObject({
     tool: z.string().min(1),
     args: z.record(z.string(), z.unknown()).optional(),
-    expect: z.string().optional(),
+    expect: z.string().min(1).optional(),
     expectError: z.boolean().optional(),
   })).max(MAX_CASES, `at most ${MAX_CASES} cases per run`),
 });

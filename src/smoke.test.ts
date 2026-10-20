@@ -24,6 +24,8 @@ test('parseConfig validates cases and enforces the per-run limit', () => {
   assert.throws(() => parseConfig(tooMany), new RegExp(String(MAX_CASES)));
   assert.throws(() => parseConfig('{"cases":[{"args":{}}]}'), /tool/);
   assert.throws(() => parseConfig('{"cases":[{"tool":"echo","expcet":"typo"}]}'), /expcet/);
+  // "".includes check always passes, so an empty expect would silently assert nothing.
+  assert.throws(() => parseConfig('{"cases":[{"tool":"echo","expect":""}]}'), /expect/);
   assert.throws(() => parseConfig('not json'), /JSON/);
 });
 
